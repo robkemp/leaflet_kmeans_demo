@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "get_data=function(field){\n  d=codemog_api(datacall = \"field\", data=field, db=\"acs0913\", sumlev = \"40\",state=\"NA\", meta=\"no\", geography=\"sumlev\", limit=\"3500\")%>%\n    mutate(GEOID=stringr::str_sub(geonum, 2, nchar(as.character(geonum))))\n  \n  names(d)=c(\"geoname\", \"state\", \"county\", \"place\", \"tract\", \"bg\", \"geonum\", \"variable\", \"GEOID\")\n  \n  return(d)\n}\n\nformat_data=function(data){\n  d=select(data,variable)%>%\n    mutate(variable=as.numeric(variable))\n  \n  if (ncol(d)>1){\n    clust=scale(d)\n  } else {\n    clust=d\n  }\n  return(d)\n}",
+    "created" : 1448810144122.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "174981077",
+    "id" : "8D9E9AB2",
+    "lastKnownWriteTime" : 2317442166205538096,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
